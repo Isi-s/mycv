@@ -8,6 +8,6 @@ function SendMail(){
 
     }
     emailjs.send('service_kv15kwn', 'template_20go6rg', params).then(function(res){
-        alert("Thank you for your message. I will check my inbox and get back to you later! " + res.status);
+        alert("Thank you for your message. I will check my inbox and get back to you later! 🙂");
     })
 }
