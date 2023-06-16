@@ -41,4 +41,40 @@ index.html must be in the main (root) folder of your webserver.
 Do not change the name of the template folders or files unless you know
 what you are doing and are changing the names in HTML files too.
 For webhosting, you can go with https://templateflip.com/go/hosting for easy FTP file uploads.
+   
+   <script>
+      const button = document.getElementById('cv-button');
+  
+      function generatePDF() {
+          // Choose the element that your content will be rendered to.
+          const element = document.getElementById('top');
+          // Choose the element and save the PDF for your user.
+          html2pdf().from(element).save();
+      }
+  
+      button.addEventListener('click', generatePDF);
+  </script>
+   
+   
+   
+    <!--Script to add email functionality (EmailJS) to our site using the contact form-->
 
+ <script>  
+    function sendEmail() {
+        let name = document.getElementById("name").value;
+        let email = document.getElementById("email").value;
+        let message = document.getElementById("message").value;
+        let finalmessage = `Name : ${name} <br>  Email : ${email} <br>  Message : ${message} <br>`;
+        Email.send({
+            Host : "",
+            Username : "SMTPtest",
+            Password : "ldwrqjnrciqbuxkt",
+            To : 'isi.edeoghon@gmail.com',
+            From : "isi.edeoghon@gmail.com",
+            Subject : "Mail from personal website",
+            Body : finalmessage
+        }).then(
+          message => alert(message)
+        );
+    }
+    </script>
