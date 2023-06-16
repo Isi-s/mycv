@@ -16,7 +16,36 @@
     <link href="css/aos.css?ver=1.2.0" rel="stylesheet">
     <link href="css/main.css?ver=1.2.0" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+     
    
+    <script type="text/javascript">
+      (function() {
+          // https://dashboard.emailjs.com/admin/account
+          emailjs.init('bt9ztUs1eHbBycBke');
+      })();
+  </script>
+
+  <!--Script CDN to add email functionality (EmailJS) to our site using the contact form-->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script> 
+
+<script type="text/javascript">
+  window.onload = function() {
+      document.getElementById('contact-form').addEventListener('submit', function(event) {
+          event.preventDefault();
+          // generate a five digit number for the contact_number variable
+          this.contact_number.value = Math.random() * 100000 | 0;
+          // these IDs from the previous steps
+          emailjs.sendForm('contact_service', 'contact_form', this)
+              .then(function() {
+                  console.log('SUCCESS!');
+              }, function(error) {
+                  console.log('FAILED...', error);
+              });
+      });
+  }
+</script>
+
+
 
    <noscript>
       <style type="text/css">
@@ -24,7 +53,7 @@
             opacity: 1 !important;
             transform: translate(0) scale(1) !important;
         }
-        
+
       </style>
     </noscript>
     <script src="js/jsPDF/dist/jspdf.umd.js"></script>
@@ -276,7 +305,7 @@
     <h2 class="h3 text mb-3">Contact Me</h2>
     <div class="row">
       <div class="col-md-7 d-print-none">
-      <div class="my-2"><form action="https://api.postmarkapp.com/email/withTemplate"
+      <div class="my-2"><form id="contact-form"
     method="POST">
   <div class="row">
     <div class="col-6">
@@ -289,7 +318,7 @@
   <div class="form-group my-2">
     <textarea class="form-control" style="resize: none;" id="message" name="message" rows="4"  placeholder="Your Message" required></textarea>
   </div>
-  <button id="contact-submit" class="btn btn-primary mt-2" type="submit"  onclick="sendEmail()">Send</button>
+  <button id="contact-submit" class="btn btn-primary mt-2" input type="submit">Send</button>
 </form>
         </div>
       </div>
@@ -360,6 +389,9 @@
     <script src="scripts/bootstrap.bundle.min.js?ver=1.2.0"></script>
     <script src="scripts/aos.js?ver=1.2.0"></script>
     <script src="scripts/main.js?ver=1.2.0"></script>
+
+    <!--Script to generate a pdf version of page, but 
+    not used in this project-->
     <script>
       const button = document.getElementById('cv-button');
   
@@ -391,5 +423,8 @@
         );
     }
     </script>
+
+    <!--Script to add email functionality (EmailJS) to our site using the contact form-->
+
   </body>
 </html>
